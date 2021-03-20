@@ -38,12 +38,9 @@ public class TaskService {
   @Transactional
   public void completeTask(Integer id) {
     Optional<Task> taskOption = taskRepository.findById(id);
-    if(taskOption.isEmpty()) {
-      throw new IllegalStateException("Task with id " + id + "does not exist");
-    } else {
-      Task task = taskOption.get();
-      task.setDone(true);
-      taskRepository.save(task);
-    }
+
+    Task task = taskOption.orElseThrow(() -> new IllegalStateException("Task with id \" + id + \"does not exist"));
+    task.setDone(true);
+    taskRepository.save(task);
   }
 }
