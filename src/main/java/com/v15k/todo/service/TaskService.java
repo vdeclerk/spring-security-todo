@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TaskService {
@@ -36,11 +37,13 @@ public class TaskService {
 
   @Transactional
   public void completeTask(Integer id) {
-    boolean exist = taskRepository.existsById(id);
-    if(!exist)
+    Optional<Task> taskOption = taskRepository.findById(id);
+    if(taskOption.isEmpty()) {
       throw new IllegalStateException("Task with id " + id + "does not exist");
-    Task task = taskRepository.findById(id).get();
-    task.setDone(true);
-    taskRepository.save(task);
+    } else {
+      Task task = taskOption.get();
+      task.setDone(true);
+      taskRepository.save(task);
+    }
   }
 }
