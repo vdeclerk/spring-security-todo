@@ -1,9 +1,7 @@
 package com.v15k.todo.task;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,4 +20,21 @@ public class TaskController {
   public List<Task> hello() {
     return taskService.getTasks();
   }
+
+  @PostMapping
+  public void registerTask(@RequestBody Task task) {
+    taskService.addTask(task);
+  }
+
+  @DeleteMapping(path="{taskId}")
+  public void deleteTask(@PathVariable("taskId") Integer id) {
+    taskService.deleteTask(id);
+  }
+
+  @PutMapping(path="{taskId}")
+  public void completeTask(@PathVariable("taskId") Integer id) {
+    taskService.completeTask(id);
+  }
 }
+
+

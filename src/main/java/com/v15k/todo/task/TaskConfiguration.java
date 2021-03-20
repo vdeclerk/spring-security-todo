@@ -14,17 +14,16 @@ public class TaskConfiguration {
   CommandLineRunner commandLineRunner(TaskRepository taskRepository){
     return args -> {
               Task task1 = new Task(
-                      1,
                       "First thing TODO",
                       LocalDate.of(2021, 03, 19),
                       LocalDate.of(2021, 05, 06),
                       false);
               Task task2 = new Task(
-                      1,
                       "Second thing TODO",
                       LocalDate.of(2021, 03, 19),
                       LocalDate.of(2021, 05, 06),
                       false);
+
 
               taskRepository.saveAll(List.of(task1, task2));
     };
