@@ -1,4 +1,4 @@
-package com.v15k.todo.task;
+package com.v15k.todo.domain;
 
 import javax.persistence.*;
 import java.time.LocalDate;

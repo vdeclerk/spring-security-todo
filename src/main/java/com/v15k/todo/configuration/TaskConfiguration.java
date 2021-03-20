@@ -1,5 +1,7 @@
-package com.v15k.todo.task;
+package com.v15k.todo.configuration;
 
+import com.v15k.todo.domain.Task;
+import com.v15k.todo.repository.TaskRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

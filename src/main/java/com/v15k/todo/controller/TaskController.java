@@ -1,5 +1,7 @@
-package com.v15k.todo.task;
+package com.v15k.todo.controller;
 
+import com.v15k.todo.domain.Task;
+import com.v15k.todo.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

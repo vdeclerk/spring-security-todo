@@ -1,12 +1,12 @@
-package com.v15k.todo.task;
+package com.v15k.todo.service;
 
+import com.v15k.todo.domain.Task;
+import com.v15k.todo.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class TaskService {
