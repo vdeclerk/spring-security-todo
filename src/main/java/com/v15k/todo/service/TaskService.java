@@ -1,6 +1,7 @@
 package com.v15k.todo.service;
 
 import com.v15k.todo.domain.Task;
+import com.v15k.todo.exception.EntityDoesNotExistException;
 import com.v15k.todo.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,7 +40,7 @@ public class TaskService {
   public void completeTask(Integer id) {
     Optional<Task> taskOption = taskRepository.findById(id);
 
-    Task task = taskOption.orElseThrow(() -> new IllegalStateException("Task with id \" + id + \"does not exist"));
+    Task task = taskOption.orElseThrow(() -> new EntityDoesNotExistException("Task with id \" + id + \"does not exist"));
     task.setDone(true);
     taskRepository.save(task);
   }

@@ -17,6 +17,7 @@ public class Task {
           generator = "task_sequence"
   )
   private Integer id;
+  private String title;
   private String description;
   private LocalDate creationDate;
   private LocalDate expireDate;
@@ -24,15 +25,17 @@ public class Task {
 
   public Task(){}
 
-  public Task(Integer id, String description, LocalDate creationDate, LocalDate expireDate, boolean done) {
+  public Task(Integer id, String title, String description, LocalDate creationDate, LocalDate expireDate, boolean done) {
     this.id = id;
+    this.title = title;
     this.description = description;
     this.creationDate = creationDate;
     this.expireDate = expireDate;
     this.done = done;
   }
 
-  public Task(String description, LocalDate creationDate, LocalDate expireDate, boolean done) {
+  public Task(String title, String description, LocalDate creationDate, LocalDate expireDate, boolean done) {
+    this.title = title;
     this.description = description;
     this.creationDate = creationDate;
     this.expireDate = expireDate;
@@ -47,6 +50,13 @@ public class Task {
     this.id = id;
   }
 
+  public String getTitle() {
+    return title;
+  }
+
+  public void setTitle(String title) {
+    this.title = title;
+  }
   public String getDescription() {
     return description;
   }
@@ -83,6 +93,7 @@ public class Task {
   public String toString() {
     return "Task{" +
             "id=" + id +
+            ", title='" + title + '\'' +
             ", description='" + description + '\'' +
             ", creationDate=" + creationDate +
             ", expireDate=" + expireDate +
