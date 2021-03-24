@@ -2,6 +2,7 @@ package com.v15k.todo.domain;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.Period;
 
 @Entity
 @Table
@@ -16,38 +17,40 @@ public class Task {
           strategy = GenerationType.SEQUENCE,
           generator = "task_sequence"
   )
-  private Integer id;
+  private Integer taskId;
   private String title;
   private String description;
   private LocalDate creationDate;
-  private LocalDate expireDate;
+  private LocalDate expiryDate;
   private boolean done;
+  @Transient
+  private Integer progress;
 
   public Task(){}
 
-  public Task(Integer id, String title, String description, LocalDate creationDate, LocalDate expireDate, boolean done) {
-    this.id = id;
+  public Task(Integer taskId, String title, String description, LocalDate creationDate, LocalDate expiryDate, boolean done) {
+    this.taskId = taskId;
     this.title = title;
     this.description = description;
     this.creationDate = creationDate;
-    this.expireDate = expireDate;
+    this.expiryDate = expiryDate;
     this.done = done;
   }
 
-  public Task(String title, String description, LocalDate creationDate, LocalDate expireDate, boolean done) {
+  public Task(String title, String description, LocalDate creationDate, LocalDate expiryDate, boolean done) {
     this.title = title;
     this.description = description;
     this.creationDate = creationDate;
-    this.expireDate = expireDate;
+    this.expiryDate = expiryDate;
     this.done = done;
   }
 
-  public Integer getId() {
-    return id;
+  public Integer getTaskId() {
+    return taskId;
   }
 
-  public void setId(Integer id) {
-    this.id = id;
+  public void setTaskId(Integer taskId) {
+    this.taskId = taskId;
   }
 
   public String getTitle() {
@@ -57,8 +60,10 @@ public class Task {
   public void setTitle(String title) {
     this.title = title;
   }
+
   public String getDescription() {
-    return description;
+    return
+            description;
   }
 
   public void setDescription(String description) {
@@ -73,12 +78,12 @@ public class Task {
     this.creationDate = creationDate;
   }
 
-  public LocalDate getExpireDate() {
-    return expireDate;
+  public LocalDate getExpiryDate() {
+    return expiryDate;
   }
 
-  public void setExpireDate(LocalDate expireDate) {
-    this.expireDate = expireDate;
+  public void setExpiryDate(LocalDate expiryDate) {
+    this.expiryDate = expiryDate;
   }
 
   public boolean isDone() {
@@ -89,14 +94,22 @@ public class Task {
     this.done = done;
   }
 
+  public Integer getProgress() {
+    if(done) return 100;
+    if(creationDate.isAfter(LocalDate.now())) return 0;
+    if(expiryDate.isBefore(LocalDate.now())) return 100;
+    return Period.between(LocalDate.now(), creationDate).getDays() * 100 /
+            Period.between(expiryDate, creationDate).getDays();
+  }
+
   @Override
   public String toString() {
     return "Task{" +
-            "id=" + id +
+            "taskId=" + taskId +
             ", title='" + title + '\'' +
             ", description='" + description + '\'' +
             ", creationDate=" + creationDate +
-            ", expireDate=" + expireDate +
+            ", expireDate=" + expiryDate +
             ", done=" + done +
             '}';
   }

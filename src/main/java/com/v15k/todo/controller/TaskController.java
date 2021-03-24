@@ -33,9 +33,9 @@ public class TaskController {
     taskService.deleteTask(id);
   }
 
-  @PutMapping(path="{taskId}")
-  public void completeTask(@PathVariable("taskId") Integer id) {
-    taskService.completeTask(id);
+  @PutMapping
+  public void completeTask(@RequestBody Task task) {
+    taskService.saveTask(task);
   }
 }
 
