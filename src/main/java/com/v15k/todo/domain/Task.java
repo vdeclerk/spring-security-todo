@@ -3,6 +3,7 @@ package com.v15k.todo.domain;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.temporal.ChronoUnit;
 
 @Entity
 @Table
@@ -98,8 +99,8 @@ public class Task {
     if(done) return 100;
     if(creationDate.isAfter(LocalDate.now())) return 0;
     if(expiryDate.isBefore(LocalDate.now())) return 100;
-    return Period.between(LocalDate.now(), creationDate).getDays() * 100 /
-            Period.between(expiryDate, creationDate).getDays();
+    return (int) (ChronoUnit.DAYS.between(creationDate, LocalDate.now()) * 100 /
+            ChronoUnit.DAYS.between(creationDate, expiryDate));
   }
 
   @Override

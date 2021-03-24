@@ -3,6 +3,7 @@ package com.v15k.todo.domain;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -25,6 +26,15 @@ class TaskTest {
             LocalDate.now(), LocalDate.now().plusDays(30), false);
     assertEquals(0, task.getProgress());
   }
+
+  @Test
+  void getProgressWithDatesInDifferentMonths() {
+    Task task = new Task("Title", "Description",
+            LocalDate.now().minusDays(5),
+            LocalDate.now().plusDays(40), false);
+    assertEquals(11, task.getProgress());
+  }
+
   @Test
   void getProgressOfFutureTask() {
     // A task created in the future has 0% progress

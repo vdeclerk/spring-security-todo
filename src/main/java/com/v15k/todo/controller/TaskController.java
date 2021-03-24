@@ -19,8 +19,18 @@ public class TaskController {
   }
 
   @GetMapping
-  public List<Task> hello() {
+  public List<Task> tasks() {
     return taskService.getTasks();
+  }
+
+  @GetMapping("/week")
+  public List<Task> nextWeekTasks() {
+    return taskService.getNextWeekTasks();
+  }
+
+  @GetMapping("/month")
+  public List<Task> nextMonthTasks() {
+    return taskService.getNextMonthTasks();
   }
 
   @PostMapping
