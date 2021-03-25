@@ -9,4 +9,4 @@ Uses JPA to connect to a Postgresql database configured with env variables.
 - SPRING-BOOT-TODO-DB-USER - The database username
 - SPRING-BOOT-TODO-DB-PASS - The database password for this user
 
-The database is created and destroyed every time the application runs, and a configuration class creates fake tasks to test/showcase the application.
+By default the database is created and **destroyed** every time the application runs, and a configuration class creates fake tasks to test/showcase the application.
