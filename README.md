@@ -2,7 +2,7 @@
 ## A simple To Do List REST API
 
 A very simple Spring Boot sample app.
-A frontend is implemented in [angular-todo]https://github.com/vdeclerk/angular-todo
+A frontend is implemented in [angular-todo](https://github.com/vdeclerk/angular-todo)
 
 Uses JPA to connect to a Postgresql database configured with env variables.
 
